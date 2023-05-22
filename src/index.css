@@ -1,0 +1,15 @@
+html {
+/*  color-scheme: light dark;*/
+}
+
+body {
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  font-size: 1.13rem;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  display: block;
+}
