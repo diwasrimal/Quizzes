@@ -1,8 +1,13 @@
+import "../styles/FetchError.css";
+
 export default function FetchError() {
   return (
-    <div>
-      Could not generate enough questions,
-      Try lowering the question amount!
+    <div className="fetch-error">
+      Could not generate enough questions, try:
+      <ul>
+        <li> Lowering question count </li>
+        <li> Changing other preferences </li>
+      </ul>
     </div>
-  )
+  );
 }

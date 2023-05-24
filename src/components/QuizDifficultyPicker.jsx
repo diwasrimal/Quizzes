@@ -7,6 +7,7 @@ export default function QuizDifficultyPicker({
 }) {
   return (
     <label>
+      Difficulty: 
       <select
         value={difficulty}
         onChange={(e) => setDifficulty(e.target.value)}

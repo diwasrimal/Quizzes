@@ -1,9 +1,16 @@
 html {
-/*  color-scheme: light dark;*/
+  background: rgb(141, 236, 195);
+  background: linear-gradient(
+    90deg,
+    rgba(141, 236, 195, 1) 11%,
+    rgba(115, 226, 208, 1) 58%,
+    rgba(94, 200, 222, 1) 100%
+  );
 }
 
 body {
-  font-family: 'Instrument Sans', system-ui, sans-serif;
+  margin: 5px;
+  font-family: "Instrument Sans", system-ui, sans-serif;
   font-size: 1.13rem;
 }
 

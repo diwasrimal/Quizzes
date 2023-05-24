@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/QuizCategoryPicker.css"
 
 export default function QuizCategoryPicker({
   quizCategories,
@@ -8,7 +9,7 @@ export default function QuizCategoryPicker({
 
   return (
     <label>
-      Quiz type
+      Category:
       <select
         value={quizCategory}
         onChange={(e) => setQuizCategory(e.target.value)}

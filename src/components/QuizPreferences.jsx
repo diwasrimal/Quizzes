@@ -8,6 +8,7 @@ import QuizCategoryPicker from "./QuizCategoryPicker.jsx";
 import QuizDifficultyPicker from "./QuizDifficultyPicker.jsx";
 import QuizQuestionTypePicker from "./QuizQuestionTypePicker.jsx";
 import QuizQuestionCounter from "./QuizQuestionCounter.jsx";
+import "../styles/QuizPreferences.css"
 
 export default function QuizPreferences({ quizQuestionFetcher }) {
   const quizCategories = Object.keys(quizCategoriesMap);
@@ -30,7 +31,8 @@ export default function QuizPreferences({ quizQuestionFetcher }) {
   }
 
   return (
-    <form  onSubmit={sumbitHandler}>
+    <form  className="pref-form" onSubmit={sumbitHandler}>
+      <h4 style={{ margin: 0 }}>Quiz Preferences</h4>
       <QuizCategoryPicker
         quizCategories={quizCategories}
         quizCategory={quizCategory}
@@ -50,7 +52,7 @@ export default function QuizPreferences({ quizQuestionFetcher }) {
         questionCount={questionCount}
         setQuestionCount={setQuestionCount}
       />
-      <button>Confirm</button>
+      <button className="submit-btn">Confirm</button>
     </form>
   );
 }

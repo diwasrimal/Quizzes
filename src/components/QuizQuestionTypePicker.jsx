@@ -7,6 +7,7 @@ export default function QuizQuestionTypePicker({
 }) {
   return (
     <label>
+      Type:
       <select
         value={questionType}
         onChange={(e) => setQuestionType(e.target.value)}
