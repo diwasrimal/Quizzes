@@ -10,11 +10,11 @@ import QuizQuestionTypePicker from "./QuizQuestionTypePicker.jsx";
 import QuizQuestionCounter from "./QuizQuestionCounter.jsx";
 import "../styles/QuizPreferences.css"
 
-export default function QuizPreferences({ quizQuestionFetcher }) {
-  const quizCategories = Object.keys(quizCategoriesMap);
-  const difficulties = Object.keys(difficultiesMap);
-  const questionTypes = Object.keys(questionTypesMap);
+const quizCategories = Object.keys(quizCategoriesMap);
+const difficulties = Object.keys(difficultiesMap);
+const questionTypes = Object.keys(questionTypesMap);
 
+export default function QuizPreferences({ quizQuestionFetcher }) {
   const [quizCategory, setQuizCategory] = useState(quizCategories[0]);
   const [difficulty, setDifficulty] = useState(difficulties[0]);
   const [questionType, setQuestionType] = useState(questionTypes[1]);
