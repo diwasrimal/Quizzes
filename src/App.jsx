@@ -2,16 +2,20 @@ import { useState, useEffect, useRef } from "react";
 import FlashCardContainer from "./components/FlashCardContainer.jsx";
 import QuizPreferences from "./components/QuizPreferences.jsx";
 import FetchError from "./components/FetchError.jsx";
+import LoadingSpinner from "./components/LoadingSpinner.jsx";
 import "./App.css";
 
 export default function App() {
-  // quizQuestions is a list of objects containing a question, a answer and options
   const [quizQuestions, setQuizQuestions] = useState([]);
-  let questionsWereFetched = useRef(false);
+
+  // Used to unmount flash card components and show loading
+  // spinner while questions are being fetched
+  const [fetchingQuestions, setFetchingQuestions] = useState(false);
 
   // Helps us know if we fetched any questions
   // We shouldn't display <FetchError /> if we haven't
   // tried to fetched any questions.
+  let questionsWereFetched = useRef(false);
   useEffect(() => {
     questionsWereFetched.current = true;
   }, [quizQuestions]);
@@ -27,13 +31,16 @@ export default function App() {
       `&difficulty=${difficulty}` +
       `&type=${type}`;
 
-    console.log(`Retrieving from ${url}`);
+    console.log(`Fetching from ${url}...`);
+    setFetchingQuestions(true);
 
     let responseData = await fetch(url)
-      .then((res) => res.json())
+      .then((res) => {
+        setFetchingQuestions(false);
+        console.log("Fetched!");
+        return res.json();
+      })
       .catch((err) => console.log(err));
-
-    console.log("Fetch complete!");
 
     // Update question state with fetched data
     setQuizQuestions(
@@ -65,15 +72,19 @@ export default function App() {
 
       <QuizPreferences quizQuestionFetcher={quizQuestionFetcher} />
 
-      {/* Show error only if question were fetched but had zero length */}
-      {questionsWereFetched.current && (
-        quizQuestions.length === 0 ? (
-          <FetchError />
-        ) : (
-          <FlashCardContainer quizQuestions={quizQuestions} />
-        )
-      )}
-
+      {/* Show spinner when questions are being fetched */}
+      {fetchingQuestions
+        ? <LoadingSpinner />
+        : // Show error if questions were fetched but had zero length
+          questionsWereFetched.current &&
+          (quizQuestions.length === 0 ? (
+            <FetchError />
+          ) : (
+            <FlashCardContainer
+              quizQuestions={quizQuestions}
+              fetchingQuestions={fetchingQuestions}
+            />
+          ))}
     </>
   );
 }

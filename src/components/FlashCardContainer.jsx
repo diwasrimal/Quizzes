@@ -1,5 +1,3 @@
-import { useState } from "react";
-import uuid from "react-uuid";
 import FlashCard from "./FlashCard.jsx";
 import "../styles/FlashCardContainer.css";
 
