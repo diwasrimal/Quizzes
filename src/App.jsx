@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import FlashCardContainer from "./components/FlashCardContainer.jsx";
 import QuizPreferences from "./components/QuizPreferences.jsx";
 import FetchError from "./components/FetchError.jsx";
@@ -6,21 +6,16 @@ import LoadingSpinner from "./components/LoadingSpinner.jsx";
 import "./App.css";
 
 export default function App() {
+  // Array of objects with props `question`, `options` and an `answer`
   const [quizQuestions, setQuizQuestions] = useState([]);
 
-  // Used to unmount flash card components and show loading
-  // spinner while questions are being fetched
+  // Used to show spinner while questions are being fetched
+  // unmounts <FlashCardContainer /> and mounts <LoadingSpinner />
   const [fetchingQuestions, setFetchingQuestions] = useState(false);
 
-  // Helps us know if we fetched any questions
-  // We shouldn't display <FetchError /> if we haven't
-  // tried to fetched any questions.
-  let questionsWereFetched = useRef(false);
-  useEffect(() => {
-    questionsWereFetched.current = true;
-  }, [quizQuestions]);
-
-  console.log("questionsWereFetched: ", questionsWereFetched.current);
+  // Determines if we fetched any questions previously
+  // if false, error shouldn't be reported even if `quizQuestions` === []
+  const questionsWereFetched = useRef(false);
 
   // Fetches questions from https://opentdb.com and sets `quizQuestions`
   async function quizQuestionFetcher(category, difficulty, type, count) {
@@ -37,7 +32,7 @@ export default function App() {
     let responseData = await fetch(url)
       .then((res) => {
         setFetchingQuestions(false);
-        console.log("Fetched!");
+        console.log("questions fetched, setting fetchingQuestions to false!");
         return res.json();
       })
       .catch((err) => console.log(err));
@@ -54,6 +49,9 @@ export default function App() {
         };
       })
     );
+
+    // Questions have been fetched
+    questionsWereFetched.current = true;
   }
 
   function stringDecode(str) {
