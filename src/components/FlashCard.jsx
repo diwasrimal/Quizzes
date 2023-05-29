@@ -6,7 +6,7 @@ export default function FlashCard({ question, options, answer }) {
 
   return (
     <div
-      className={`flash-card ${flipped && "flipped"}`}
+      className={`flash-card ${flipped ? "flipped" : ""}`}
       onClick={() => setFlipped(!flipped)}
     >
       <div className="front">
