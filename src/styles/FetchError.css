@@ -1,5 +1,5 @@
 .fetch-error {
-    width: 50%;
-    min-width: 350px;
+    min-width: 320px;
+    max-width: 350px;
     margin: auto;
 }
