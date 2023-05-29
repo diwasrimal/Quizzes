@@ -1,5 +1,7 @@
 .flash-card-container {
    	grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+   	align-items: center;
+   	justify-content: center;
 	display: grid;
 	gap: 25px;
 	padding: 10px;
