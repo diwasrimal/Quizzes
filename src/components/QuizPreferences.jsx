@@ -33,25 +33,11 @@ export default function QuizPreferences({ quizQuestionFetcher }) {
   return (
     <form  className="pref-form" onSubmit={sumbitHandler}>
       <h4 style={{ margin: 0 }}>Quiz Preferences</h4>
-      <QuizCategoryPicker
-        quizCategories={quizCategories}
-        quizCategory={quizCategory}
-        setQuizCategory={setQuizCategory}
-      />
-      <QuizDifficultyPicker
-        difficulties={difficulties}
-        difficulty={difficulty}
-        setDifficulty={setDifficulty}
-      />
-      <QuizQuestionTypePicker
-        questionTypes={questionTypes}
-        questionType={questionType}
-        setQuestionType={setQuestionType}
-      />
-      <QuizQuestionCounter
-        questionCount={questionCount}
-        setQuestionCount={setQuestionCount}
-      />
+      
+      <QuizCategoryPicker {...{ quizCategories, quizCategory, setQuizCategory }} />
+      <QuizDifficultyPicker {...{ difficulties, difficulty, setDifficulty }} />
+      <QuizQuestionTypePicker {...{ questionTypes, questionType, setQuestionType }} />
+      <QuizQuestionCounter {...{ questionCount, setQuestionCount }} />
       <button className="submit-btn">Confirm</button>
     </form>
   );
