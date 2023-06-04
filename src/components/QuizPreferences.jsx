@@ -3,7 +3,7 @@ import {
   quizCategoriesMap,
   difficultiesMap,
   questionTypesMap,
-} from "../quizParameters.js";
+} from "../assets/quizParameters.js";
 import QuizCategoryPicker from "./QuizCategoryPicker.jsx";
 import QuizDifficultyPicker from "./QuizDifficultyPicker.jsx";
 import QuizQuestionTypePicker from "./QuizQuestionTypePicker.jsx";
