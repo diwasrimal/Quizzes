@@ -4,11 +4,13 @@ import {
   difficultiesMap,
   questionTypesMap,
 } from "../assets/quizParameters.js";
-import QuizCategoryPicker from "./QuizCategoryPicker.jsx";
-import QuizDifficultyPicker from "./QuizDifficultyPicker.jsx";
-import QuizQuestionTypePicker from "./QuizQuestionTypePicker.jsx";
-import QuizQuestionCounter from "./QuizQuestionCounter.jsx";
-import "../styles/QuizPreferences.css"
+import {
+  QuizCategoryPicker,
+  QuizDifficultyPicker,
+  QuizQuestionTypePicker,
+  QuizQuestionCounter,
+} from "./QuizPreferencePickers.jsx";
+import "../styles/QuizPreferences.css";
 
 const quizCategories = Object.keys(quizCategoriesMap);
 const difficulties = Object.keys(difficultiesMap);
