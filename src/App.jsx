@@ -9,6 +9,7 @@ export default function App() {
   const [quizQuestions, setQuizQuestions] = useState([]);
   const [questionsBeingFetched, setQuestionsBeingFetched] = useState(false);
   const fetchError = useRef(false);
+  const prefSubmitButton = useRef(null);
 
   // Fetches questions from https://opentdb.com and sets `quizQuestions`
   async function quizQuestionFetcher(category, difficulty, type, count) {
@@ -23,9 +24,11 @@ export default function App() {
 
     // Unmount <FlashCardContainer /> and mount <LoadingSpinner /> during fetch
     // Also keep track if fetch raises some error
+    // Disable submit button during fetch
     setQuizQuestions([]);
     setQuestionsBeingFetched(true);
     fetchError.current = false;
+    prefSubmitButton.current.disabled = true;
 
     const questions = await fetch(url)
       .then((res) => res.json())
@@ -39,8 +42,9 @@ export default function App() {
         console.log(err);
       });
 
-    // Unmount spinner after fetch, and exit on unsucessful fetch
+    // Unmount spinner and enable submit button after fetch, and exit on unsucessful fetch
     setQuestionsBeingFetched(false);
+    prefSubmitButton.current.disabled = false;
     if (questions === undefined) return;
 
     setQuizQuestions(
@@ -66,6 +70,7 @@ export default function App() {
     quizQuestions: quizQuestions,
     fetchError: fetchError,
     questionsBeingFetched: questionsBeingFetched,
+    prefSubmitButton: prefSubmitButton,
   };
   console.log(status);
 
@@ -74,7 +79,10 @@ export default function App() {
       <div className="header">
         <h2> Flash Card Quiz </h2>
       </div>
-      <QuizPreferences quizQuestionFetcher={quizQuestionFetcher} />
+      <QuizPreferences
+        quizQuestionFetcher={quizQuestionFetcher}
+        prefSubmitButton={prefSubmitButton}
+      />
 
       {questionsBeingFetched && <LoadingSpinner />}
       {fetchError.current && <FetchError />}

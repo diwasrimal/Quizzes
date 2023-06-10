@@ -16,7 +16,7 @@ const quizCategories = Object.keys(quizCategoriesMap);
 const difficulties = Object.keys(difficultiesMap);
 const questionTypes = Object.keys(questionTypesMap);
 
-export default function QuizPreferences({ quizQuestionFetcher }) {
+export default function QuizPreferences({ quizQuestionFetcher, prefSubmitButton }) {
   const [quizCategory, setQuizCategory] = useState(quizCategories[0]);
   const [difficulty, setDifficulty] = useState(difficulties[0]);
   const [questionType, setQuestionType] = useState(questionTypes[1]);
@@ -40,7 +40,7 @@ export default function QuizPreferences({ quizQuestionFetcher }) {
       <QuizDifficultyPicker {...{ difficulties, difficulty, setDifficulty }} />
       <QuizQuestionTypePicker {...{ questionTypes, questionType, setQuestionType }} />
       <QuizQuestionCounter {...{ questionCount, setQuestionCount }} />
-      <button className="submit-btn">Confirm</button>
+      <button className="submit-btn" ref={prefSubmitButton}>Confirm</button>
     </form>
   );
 }
